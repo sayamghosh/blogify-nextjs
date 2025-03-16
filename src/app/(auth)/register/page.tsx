@@ -16,25 +16,28 @@ export default function Page() {
   const {
     register,
     handleSubmit,
-    setError,
     reset,
     formState: { errors, isSubmitting },
   } = useForm<FormFields>({ resolver: zodResolver(schema) });
 
   async function onSubmit(data: FormFields) {
-    const result = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/register`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json", // ✅ Important! Tells server it's JSON
-        },
-        body: JSON.stringify(data),
-      }
-    );
-    const responseData = await result.json();
-    console.log(responseData);
-    reset();
+    try {
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/user/register`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json", // ✅ Important! Tells server it's JSON
+          },
+          body: JSON.stringify(data),
+        }
+      );
+      const responseData = await result.json();
+      console.log(responseData)
+      reset();
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
