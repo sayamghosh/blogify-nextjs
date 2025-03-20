@@ -1,8 +1,9 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+
 
 export default function Page() {
   const schema = z.object({
@@ -20,6 +21,8 @@ export default function Page() {
     formState: { errors, isSubmitting },
   } = useForm<FormFields>({ resolver: zodResolver(schema) });
 
+  const[serverError,setServerError]=useState()
+
   async function onSubmit(data: FormFields) {
     try {
       const result = await fetch(
@@ -33,7 +36,10 @@ export default function Page() {
         }
       );
       const responseData = await result.json();
-      console.log(responseData)
+      if(responseData.error){
+        setServerError(responseData.error)
+        return;
+      }
       reset();
     } catch (error) {
       console.log(error)
@@ -88,6 +94,7 @@ export default function Page() {
         >
           Register
         </button>
+        {serverError && <h2 className="text-red-500">{serverError}</h2>} 
       </form>
     </div>
   );
