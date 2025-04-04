@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import {setAuthToken} from '@/utils/cookie-store'
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -35,6 +36,7 @@ export default function Page() {
       );
       reset();
       const response = await result.json();
+      setAuthToken(response.token)
       console.log(response)
     } catch (error) {
       console.log({error:error})

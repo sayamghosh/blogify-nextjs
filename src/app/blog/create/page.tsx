@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import {getAuthToken} from '@/utils/cookie-store'
 
 export default function Page() {
   const [file, setFile] = useState<File | null>(null);
@@ -25,7 +26,7 @@ export default function Page() {
       const response = await fetch("http://localhost:8000/blog/create", {
         method: "POST",
         headers: {
-          'Authorization':'Bearer <token>'
+          'Authorization':`Bearer ${await getAuthToken()}` // Add your token here
         },
         body: formData, // Send raw file
       });
