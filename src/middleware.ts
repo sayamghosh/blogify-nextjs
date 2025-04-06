@@ -10,7 +10,7 @@ export async function middleware(request: NextRequest) {
     const token = await getAuthToken()
 
     if (isPublicPath && token){
-        return NextResponse.redirect(new URL('/profile', request.url))
+        return NextResponse.redirect(new URL('/', request.url))
     }
     else if(!isPublicPath && !token){
         return NextResponse.redirect(new URL('/login', request.url))
@@ -20,7 +20,6 @@ export async function middleware(request: NextRequest) {
 // See "Matching Paths" below to learn more
 export const config = {
   matcher: [
-    '/',
     '/login',
     '/register',
     '/profile',
