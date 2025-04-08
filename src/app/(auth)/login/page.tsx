@@ -86,6 +86,7 @@ export default function Page() {
           </span>
           <button
             type="submit"
+            disabled={isSubmitting}
             className={`${
               isSubmitting ? "bg-yellow-500" : "bg-[#FFD11A]"
             } hover:bg-yellow-500 rounded-md py-2 text-[#141414] w-full`}

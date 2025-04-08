@@ -13,7 +13,7 @@ export default function Navbar() {
           <Link href={"/"}>Liked</Link>
           <li href={"/"}>My blogs</li>
         </ul>
-        <button className="py-1 px-3 bg-[#FFD11A] rounded-md text-black text-xs">Create</button>
+        <Link href={"/blog/create"} className="py-1 px-3 bg-[#FFD11A] rounded-md text-black text-xs">Create</Link>
       </div>
     </nav>
   );
