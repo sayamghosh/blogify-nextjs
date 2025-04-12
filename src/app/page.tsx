@@ -19,7 +19,7 @@ export default async function Page() {
       <Navbar />
       <div className=" w-[95%] lg:max-w-5xl h-full pt-5 mx-auto">
         <BlogCard1 blog={blog[0]} />
-        <div className="grid lg:grid-cols-3 gap-x-6 gap-y-2 pt-2">
+        <div className="grid lg:grid-cols-3 gap-x-6 gap-y-2 pt-2 pb-10">
           {blog.map((item:BlogType,index:number)=>(
             <BlogCard2 blog={item} key={index} />
           ))}
