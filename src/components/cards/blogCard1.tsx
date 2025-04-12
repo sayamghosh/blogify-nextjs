@@ -15,25 +15,25 @@ export default function BlogCard1({ blog }: { blog: BlogType }) {
         alt="image"
         className="rounded-md"
        />
-      <div className="w-full flex flex-col gap-4 items-start justify-start">
+      <div className="w-full flex flex-col gap-8 items-start justify-start">
         <div className="text-gray-300 w-full">
           <h1 className="text-2xl font-bold mt-4 w-full text-left">
             {blog.title}
           </h1>
-          <p className="text-left mt-2 text-lg w-full">{blog.content.slice(0,299)+"..."}</p>
+          <p className="text-left mt-2 text-lg w-full">{blog.content.length>299 ?  blog.content.slice(0,299)+"..." : blog.content}</p>
         </div>
         <div className="grid grid-cols-3 mt-4 w-full">
           <span>
             <p>Cetegory</p>
-            <p>{blog.category}</p>
+            <p className="text-gray-400">{blog.category}</p>
           </span>
           <span>
             <p>Published</p>
-            <p className="text-left">{formatDate(blog.createdAt)}</p>
+            <p className="text-left text-gray-400">{formatDate(blog.createdAt)}</p>
           </span>
           <span>
             <p>Author</p>
-            <p>{blog.author}</p>
+            <p className="text-gray-400">{blog.author}</p>
           </span>
         </div>
         <div className="mt-6 w-full flex justify-between items-center">

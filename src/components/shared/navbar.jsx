@@ -6,7 +6,9 @@ export default function Navbar() {
   return (
     <nav className="w-full bg-[#1A1A1A]">
       <div className="max-w-7xl mx-auto flex justify-between items-center py-2 px-4 md:px-0">
+        <Link href={"/"}>
         <Image src={'/logo.svg'} width={30} height={30} alt="logo"></Image>
+        </Link>
         <ul className="hidden md:flex gap-10">
           <Link href={"/"}>Home</Link>
           <Link href={"/profile"}>Profile</Link>
