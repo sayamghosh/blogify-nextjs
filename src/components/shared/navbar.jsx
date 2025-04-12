@@ -1,8 +1,31 @@
-import React from "react";
+'use client'
+import { useState ,useEffect, use} from "react";
 import Image from "next/image";
 import Link from "next/link";
+import {LogOut} from "lucide-react"
+import {getAuthToken,setAuthToken} from "@/utils/cookie-store"
+import { useRouter } from "next/navigation";
+
 
 export default function Navbar() {
+
+  const router = useRouter();
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    const fetchToken = async () => {
+      const auth = await getAuthToken();
+      setToken(auth);
+    };
+    fetchToken();
+  }, []);
+
+  async function handleLogout() {
+    await setAuthToken("");
+    setToken(null); // clear state on logout
+    router.push("/"); // redirect to login page
+  }
+
   return (
     <nav className="w-full bg-[#1A1A1A]">
       <div className="max-w-7xl mx-auto flex justify-between items-center py-2 px-4 md:px-0">
@@ -13,9 +36,12 @@ export default function Navbar() {
           <Link href={"/"}>Home</Link>
           <Link href={"/profile"}>Profile</Link>
           <Link href={"/"}>Liked</Link>
-          <li href={"/"}>My blogs</li>
+          <Link href={"/"}>My blogs</Link>
         </ul>
-        <Link href={"/blog/create"} className="py-1 px-3 bg-[#FFD11A] rounded-md text-black text-xs">Create</Link>
+        <span className="flex gap-2 items-center">
+        <Link href={token ? "/blog/create":"/login"} className="py-1 px-3 bg-[#FFD11A] rounded-md text-black text-xs">{token?"Create":"Login"}</Link>
+        {token && <LogOut size={20} className="cursor-pointer" onClick={()=>{handleLogout()}} />}
+        </span>
       </div>
     </nav>
   );

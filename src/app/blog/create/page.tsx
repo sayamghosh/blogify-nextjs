@@ -55,6 +55,7 @@ export default function Page() {
       const result = await res.json();
       console.log(result);
       reset(); // clear form
+      setImagePreview(null); // clear image preview
       if (result.success) {
         router.push("/"); // redirect to home page
       }
