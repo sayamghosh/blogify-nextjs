@@ -7,7 +7,7 @@ import { formatDate } from "@/utils/formatDate";
 
 export default function BlogCard1({ blog }: { blog: BlogType }) {
   return (
-    <div className="w-[95%] lg:max-w-5xl mx-auto flex flex-col lg:flex-row gap-20 items-center justify-center ">
+    <div className="w-full flex flex-col lg:flex-row lg:gap-20 gap-1 items-center justify-center border-b border-b-gray-500 pb-4">
       <Image
         src={blog.coverImageUrl}
         width={400}
@@ -20,7 +20,7 @@ export default function BlogCard1({ blog }: { blog: BlogType }) {
           <h1 className="text-2xl font-bold mt-4 w-full text-left">
             {blog.title}
           </h1>
-          <p className="text-left mt-2 text-lg w-full">{blog.content}</p>
+          <p className="text-left mt-2 text-lg w-full">{blog.content.slice(0,299)+"..."}</p>
         </div>
         <div className="grid grid-cols-3 mt-4 w-full">
           <span>
@@ -36,8 +36,8 @@ export default function BlogCard1({ blog }: { blog: BlogType }) {
             <p>{blog.author}</p>
           </span>
         </div>
-        <div className="mt-6 w-full flex gap-10 items-center">
-          <span className="flex gap-4">
+        <div className="mt-6 w-full flex justify-between items-center">
+          <span className="flex gap-2">
             <Like />
             <Share />
           </span>
