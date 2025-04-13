@@ -1,14 +1,13 @@
-'use client'
-import { useState ,useEffect, use} from "react";
+"use client";
+import { useState, useEffect, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {LogOut} from "lucide-react"
-import {getAuthToken,setAuthToken} from "@/utils/cookie-store"
+import { LogOut } from "lucide-react";
+import { getAuthToken, setAuthToken } from "@/utils/cookie-store";
 import { useRouter } from "next/navigation";
-
+import { House, User, BookHeart, SwatchBook } from "lucide-react";
 
 export default function Navbar() {
-
   const router = useRouter();
   const [token, setToken] = useState(null);
 
@@ -30,7 +29,7 @@ export default function Navbar() {
     <nav className="w-full bg-[#1A1A1A]">
       <div className="max-w-7xl mx-auto flex justify-between items-center py-2 px-4 md:px-0">
         <Link href={"/"}>
-        <Image src={'/logo.svg'} width={30} height={30} alt="logo"></Image>
+          <Image src={"/logo.svg"} width={30} height={30} alt="logo"></Image>
         </Link>
         <ul className="hidden md:flex gap-10">
           <Link href={"/"}>Home</Link>
@@ -38,9 +37,37 @@ export default function Navbar() {
           <Link href={"/"}>Liked</Link>
           <Link href={"/"}>My blogs</Link>
         </ul>
+        <ul className="md:hidden fixed bottom-0 left-0 w-full bg-[#1A1A1A] flex justify-around items-center py-2 z-50">
+          <Link href={"/"}>
+            <House />
+          </Link>
+          <Link href={"/profile"}>
+            <User />
+          </Link>
+          <Link href={"/"}>
+            <BookHeart />
+          </Link>
+          <Link href={"/"}>
+            <SwatchBook />
+          </Link>
+        </ul>
+
         <span className="flex gap-2 items-center">
-        <Link href={token ? "/blog/create":"/login"} className="py-1 px-3 bg-[#FFD11A] rounded-md text-black text-xs">{token?"Create":"Login"}</Link>
-        {token && <LogOut size={20} className="cursor-pointer" onClick={()=>{handleLogout()}} />}
+          <Link
+            href={token ? "/blog/create" : "/login"}
+            className="py-1 px-3 bg-[#FFD11A] rounded-md text-black text-xs"
+          >
+            {token ? "Create" : "Login"}
+          </Link>
+          {token && (
+            <LogOut
+              size={20}
+              className="cursor-pointer"
+              onClick={() => {
+                handleLogout();
+              }}
+            />
+          )}
         </span>
       </div>
     </nav>
