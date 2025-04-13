@@ -3,6 +3,7 @@ import Image from "next/image";
 import ReadMore from "@/components/buttons/readMore";
 import Like from "@/components/buttons/like";
 import Share from "@/components/buttons/share";
+import Link from "next/link";
 
 import { BlogType } from "@/helper/blogTypes";
 
@@ -29,7 +30,9 @@ export default function BlogCard2({blog}: {blog: BlogType}) {
           <Like />
           <Share />
         </span>
-        <ReadMore />
+        <Link href={`/blog/read/${blog._id}`} className="cursor-pointer" >
+          <ReadMore />
+        </Link>
       </div>
     </div>
   );
