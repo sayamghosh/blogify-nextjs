@@ -4,6 +4,7 @@ import Like from "@/components/buttons/like";
 import Share from "@/components/buttons/share";
 import { BlogType } from "@/helper/blogTypes";
 import { formatDate } from "@/utils/formatDate";
+import Link from "next/link";
 
 export default function BlogCard1({ blog }: { blog: BlogType }) {
   return (
@@ -41,7 +42,9 @@ export default function BlogCard1({ blog }: { blog: BlogType }) {
             <Like />
             <Share />
           </span>
-          <button className="border px-6 py-2 rounded-lg">Read More</button>
+          <Link href={`/blog/read/${blog._id}`} >
+            <button className="border px-6 py-2 rounded-lg cursor-pointer">Read More</button>
+          </Link>
         </div>
       </div>
     </div>
