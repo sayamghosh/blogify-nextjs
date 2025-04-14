@@ -1,7 +1,6 @@
 "use client";
-import React from "react";
 import { Heart } from "lucide-react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { getAuthToken } from "@/utils/cookie-store";
 
 export default function Like({ id }: { id: string }) {
@@ -13,7 +12,7 @@ export default function Like({ id }: { id: string }) {
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/like/count`,
       {
         method: "POST",
-        headers: { "Content-Type": "application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ blogId: id }),
       }
     );
@@ -23,17 +22,18 @@ export default function Like({ id }: { id: string }) {
 
   async function fetchIsLiked() {
     const token = await getAuthToken();
-    if(!token) {
+    if (!token) {
       return;
     }
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/like/check`,
       {
         method: "POST",
-        headers: { "Content-Type": "application/json",
+        headers: {
+          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
-         },
-        body: JSON.stringify({ blogId: id}),
+        },
+        body: JSON.stringify({ blogId: id }),
       }
     );
     const data = await res.json();
@@ -43,12 +43,11 @@ export default function Like({ id }: { id: string }) {
   useEffect(() => {
     fetchIsLiked();
     fetchLikes();
-  });
-
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
 
   async function handleLike() {
-    const token = getAuthToken();
+    const token = await getAuthToken();
     if (!token) {
       return; //TODO: ADD TOAST MESSAGE
     }
@@ -61,8 +60,8 @@ export default function Like({ id }: { id: string }) {
         },
         body: JSON.stringify({ blogId: id }),
       });
-      fetchLikes();
-      fetchIsLiked();
+      await fetchLikes();
+      await fetchIsLiked();
     } catch (error) {
       console.log(error);
     }
@@ -71,8 +70,12 @@ export default function Like({ id }: { id: string }) {
   return (
     <div
       onClick={handleLike}
-      className="w-fit  px-3 py-1 flex gap-2 border rounded-full items-center cursor-pointer">
-      <Heart className={`${isLiked ? "text-red-500":"text-white"}`} size={15} />
+      className="w-fit  px-3 py-1 flex gap-2 border rounded-full items-center cursor-pointer"
+    >
+      <Heart
+        className={`${isLiked ? "text-red-500" : "text-white"}`}
+        size={15}
+      />
       <p className="text-white">{likes}</p>
     </div>
   );
