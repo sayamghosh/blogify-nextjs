@@ -43,7 +43,7 @@ export default async function Page({ params }: { params: Promise<{ slug?: string
           </div>
           <div className="lg:w-4/12 pt-6 flex flex-col">
             <span className="flex gap-4 items-center lg:pl-10 pl-4 border-b border-b-gray-800 pb-4">
-              <Like />
+              <Like id={blog._id} />
               <Share />
             </span>
             <div className="grid grid-cols-2 gap-6 lg:pl-10 pl-4 pb-14 pt-6">

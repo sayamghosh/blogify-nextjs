@@ -27,7 +27,7 @@ export default function BlogCard2({blog}: {blog: BlogType}) {
       </div>
       <div className="flex items-center justify-between">
         <span className="flex gap-2 items-center">
-          <Like />
+          <Like id={blog._id} />
           <Share />
         </span>
         <Link href={`/blog/read/${blog._id}`} className="cursor-pointer" >
