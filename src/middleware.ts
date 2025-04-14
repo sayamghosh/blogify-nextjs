@@ -23,6 +23,8 @@ export const config = {
     '/login',
     '/register',
     '/profile',
+    '/blog/liked',
+    '/blog/myblog',
     '/blog/create',
   ],
 }

@@ -1,11 +1,10 @@
 import React from 'react'
 import Navbar from '@/components/shared/navbar'
-import BlogCard1 from '@/components/cards/blogCard1'
 import BlogCard2 from '@/components/cards/blogCard2'
 import { BlogType } from '@/helper/blogTypes'
 import { getAuthToken } from '@/utils/cookie-store'
 
-export default async function page() {
+export default async function Page() {
 
     const res = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/blog/myblog`,
