@@ -16,7 +16,7 @@ export default async function Page({ params }: { params: Promise<{ slug?: string
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ id: slug }),
-      next: { revalidate: 30 },
+      next: { revalidate: 60 },
     }
   );
 

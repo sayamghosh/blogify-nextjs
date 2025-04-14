@@ -9,7 +9,7 @@ export default async function Page() {
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/blog/getall`,
     {
       method: "GET",
-      next: { revalidate: 30 },
+      next: { revalidate: 60 },
     }
   );
   const data = await res.json();
