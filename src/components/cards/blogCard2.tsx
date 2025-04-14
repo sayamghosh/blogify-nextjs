@@ -7,10 +7,7 @@ import Link from "next/link";
 
 import { BlogType } from "@/helper/blogTypes";
 
-
-
 export default function BlogCard2({blog}: {blog: BlogType}) {
-
   return (
     <div className="border-b border-b-gray-500 pb-4">
       <div className="relative w-full  h-44 rounded-md overflow-hidden my-2 ">
