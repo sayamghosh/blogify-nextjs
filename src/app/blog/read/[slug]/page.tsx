@@ -1,12 +1,12 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Navbar from "@/components/shared/navbar";
 import Image from "next/image";
 import Like from "@/components/buttons/like";
 import Share from "@/components/buttons/share";
 import { formatDate } from "@/utils/formatDate";
 
-export default async function Page({ params }: { params: Promise<{ slug?: string}> }) {
-  const slug = (await params).slug; 
+export default async function Page({ params }: { params: Promise<{ slug?: string }> }) {
+  const slug = (await params).slug;
 
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/blog/getone`,
@@ -20,7 +20,7 @@ export default async function Page({ params }: { params: Promise<{ slug?: string
     }
   );
 
-  const { blog } = await res.json(); // Log the data to see the response
+  const { blog } = await res.json();
 
   return (
     <div className="w-full h-screen">
@@ -43,8 +43,12 @@ export default async function Page({ params }: { params: Promise<{ slug?: string
           </div>
           <div className="lg:w-4/12 pt-6 flex flex-col">
             <span className="flex gap-4 items-center lg:pl-10 pl-4 border-b border-b-gray-800 pb-4">
-              <Like id={blog._id} />
-              <Share />
+              <Suspense fallback={<div>Loading Like...</div>}>
+                <Like id={blog._id} />
+              </Suspense>
+              <Suspense fallback={<div>Loading Share...</div>}>
+                <Share />
+              </Suspense>
             </span>
             <div className="grid grid-cols-2 gap-6 lg:pl-10 pl-4 pb-14 pt-6">
               <span className="flex flex-col">
