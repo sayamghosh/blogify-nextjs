@@ -39,7 +39,7 @@ export default function BlogCard1({ blog }: { blog: BlogType }) {
         </div>
         <div className="mt-6 w-full flex justify-between items-center">
           <span className="flex gap-2">
-            <Like />
+            <Like id={blog._id} />
             <Share />
           </span>
           <Link href={`/blog/read/${blog._id}`} >

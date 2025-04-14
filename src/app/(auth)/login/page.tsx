@@ -34,8 +34,7 @@ export default function Page() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-          },
-          credentials: "include", // ✅ Include cookies in the request
+          },// ✅ Include cookies in the request
           body: JSON.stringify(data),
         }
       );
