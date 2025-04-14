@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Navbar from "@/components/shared/navbar";
 import Image from "next/image";
 import Like from "@/components/buttons/like";
@@ -23,6 +23,7 @@ export default async function Page({ params }: { params: Promise<{ slug?: string
   const { blog } = await res.json(); // Log the data to see the response
 
   return (
+    <Suspense fallback={<div className="p-10 text-center text-lg">Loading page...</div>}>
     <div className="w-full h-screen">
       <Navbar />
       <div className="w-[95%] lg:max-w-5xl h-full  mx-auto mt-6 ">
@@ -68,5 +69,6 @@ export default async function Page({ params }: { params: Promise<{ slug?: string
         </section>
       </div>
     </div>
+    </Suspense>
   );
 }
