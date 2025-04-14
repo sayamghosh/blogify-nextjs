@@ -37,17 +37,15 @@ export default function Like({ id }: { id: string }) {
       }
     );
     const data = await res.json();
-    console.log(data.liked);
     setIsLiked(data.liked);
   }
 
   useEffect(() => {
     fetchIsLiked();
-  }, [id]);
-
-  useEffect(() => {
     fetchLikes();
-  }, [isLiked]);
+  });
+
+
 
   async function handleLike() {
     const token = getAuthToken();

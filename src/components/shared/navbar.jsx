@@ -34,8 +34,8 @@ export default function Navbar() {
         <ul className="hidden md:flex gap-10">
           <Link href={"/"}>Home</Link>
           <Link href={"/profile"}>Profile</Link>
-          <Link href={"/"}>Liked</Link>
-          <Link href={"/"}>My blogs</Link>
+          <Link href={"/blog/liked"}>Liked</Link>
+          <Link href={"/blog/myblog"}>My blogs</Link>
         </ul>
         <ul className="md:hidden fixed bottom-0 left-0 w-full bg-[#1A1A1A] flex justify-around items-center py-2 z-50">
           <Link href={"/"}>
@@ -44,10 +44,10 @@ export default function Navbar() {
           <Link href={"/profile"}>
             <User />
           </Link>
-          <Link href={"/"}>
+          <Link href={"/blog/liked"}>
             <BookHeart />
           </Link>
-          <Link href={"/"}>
+          <Link href={"/blog/myblog"}>
             <SwatchBook />
           </Link>
         </ul>
