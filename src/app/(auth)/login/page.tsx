@@ -7,6 +7,9 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
+import Navbar from "@/components/shared/navbar";
+
+
 const schema = z.object({
   email: z.string().email("Invalid email format"),
   password: z.string().min(6, "Min lenght must be 6"),
@@ -54,6 +57,8 @@ export default function Page() {
   }
 
   return (
+    <>
+    <Navbar />
     <div className="w-full h-screen flex flex-col justify-center items-center">
       <h2 className="text-2xl mb-2">Login</h2>
       <form
@@ -105,5 +110,6 @@ export default function Page() {
         </div>
       </form>
     </div>
+    </>
   );
 }
