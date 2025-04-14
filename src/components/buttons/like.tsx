@@ -37,7 +37,6 @@ export default function Like({ id }: { id: string }) {
       }
     );
     const data = await res.json();
-    console.log(data.liked);
     setIsLiked(data.liked);
   }
 
