@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Blogify Next.js  
 
-## Getting Started
+Blogify is a modern blogging platform built with Next.js, designed to provide a seamless experience for creating, managing, and sharing blog posts.  
 
-First, run the development server:
+## Live Demo  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The project is live and accessible at [Blogify Pro](https://blogify-pro.vercel.app).  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Routes  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `/` - The homepage displaying a list of all published blogs.  
+- `/login` - The login page for user authentication.  
+- `/register` - The registration page for new users.  
+- `/profile` - The user profile page to view and manage personal information.  
+- `/blog/create` - The page for creating new blog posts.  
+- `/blog/read/[slug]` - The dynamic route to view individual blog posts.
+- `/blog/liked` - The route to view liked blogs.
+- `/blog/myblog` - The route to view own blogs.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `/edit/[id]` - The dynamic route for editing a user's blog post (future development).  
+- `/share/[id]` - The dynamic route for sharing a blog post (future development). 
 
-## Learn More
+## Current Features  
 
-To learn more about Next.js, take a look at the following resources:
+- **User Authentication**: Secure login and registration system.  
+- **Create Blog Posts**: Users can create and publish their own blog posts.  
+- **View Blogs**: Browse and read blogs created by other users.
+- **Like Blogs**: User will able to like any blog.   
+- **Responsive Design**: Fully responsive UI for a great experience on all devices.  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Features Under Development  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 1. Share Feature  
+The share feature will allow users to share blog posts directly to social media platforms or via a shareable link.  
+- **Implementation Plan**:  
+    - Integrate social media APIs (e.g., Facebook, Twitter, etc.).  
+    - Add a share button to each blog post.  
+    - Generate unique shareable links for each post.  
 
-## Deploy on Vercel
+### 2. Profile Editing  
+Users will be able to edit their profile information, such as username, bio, and profile picture.  
+- **Implementation Plan**:  
+    - Create a profile editing page.  
+    - Implement file upload functionality for profile pictures.  
+    - Update the backend to handle profile updates securely.  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 3. Blog Edit Feature (Future Development)  
+Users will have the ability to edit their previously published blog posts.  
+- **Implementation Plan**:  
+    - Add an "Edit" button to each user's blog posts.  
+    - Create a blog editing interface pre-filled with the existing content.  
+    - Update the backend to handle blog post updates.  
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Getting Started  
+
+To run this project locally:  
+
+1. Clone the repository:  
+     ```bash  
+     git clone https://github.com/sayamghosh/blogify-nextjs.git 
+     ```  
+
+2. Install dependencies:  
+     ```bash  
+     npm install  
+     ```  
+
+3. Start the development server:  
+     ```bash  
+     npm run dev  
+     ```  
+
+4. Open your browser and navigate to `http://localhost:3000`.  
+
+## Contributing  
+
+Contributions are welcome! Feel free to open issues or submit pull requests to improve the project.  
+
+## License  
+
+This project is licensed under the MIT License.   
