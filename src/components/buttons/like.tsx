@@ -1,11 +1,19 @@
 "use client";
 import { Heart } from "lucide-react";
 import React, { useState, useEffect } from "react";
-import { getAuthToken } from "@/utils/cookie-store";
+import { useAuth } from "@/context/AuthContext";
+
 
 export default function Like({ id }: { id: string }) {
+
+  const { token } = useAuth();
+
   const [likes, setLikes] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
+
+  // function localLiker(){
+
+  // }
 
   async function fetchLikes() {
     const res = await fetch(
@@ -21,7 +29,6 @@ export default function Like({ id }: { id: string }) {
   }
 
   async function fetchIsLiked() {
-    const token = await getAuthToken();
     if (!token) {
       return;
     }
@@ -37,17 +44,17 @@ export default function Like({ id }: { id: string }) {
       }
     );
     const data = await res.json();
+    console.log(data);
     setIsLiked(data.liked);
   }
 
-  useEffect(() => {
+  useEffect(() => { 
     fetchIsLiked();
     fetchLikes();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, []);
 
   async function handleLike() {
-    const token = await getAuthToken();
     if (!token) {
       return; //TODO: ADD TOAST MESSAGE
     }
@@ -56,12 +63,12 @@ export default function Like({ id }: { id: string }) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${await getAuthToken()}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ blogId: id }),
       });
-      await fetchLikes();
-      await fetchIsLiked();
+      fetchIsLiked();
+      fetchLikes();
     } catch (error) {
       console.log(error);
     }
