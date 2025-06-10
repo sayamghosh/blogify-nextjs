@@ -2,10 +2,9 @@
 import { Heart } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
-
+import toast, { Toaster } from "react-hot-toast";
 
 export default function Like({ id }: { id: string }) {
-
   const { token } = useAuth();
 
   const [likes, setLikes] = useState(0);
@@ -48,7 +47,7 @@ export default function Like({ id }: { id: string }) {
     setIsLiked(data.liked);
   }
 
-  useEffect(() => { 
+  useEffect(() => {
     fetchIsLiked();
     fetchLikes();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -56,7 +55,11 @@ export default function Like({ id }: { id: string }) {
 
   async function handleLike() {
     if (!token) {
-      return; //TODO: ADD TOAST MESSAGE
+      toast.dismiss();
+      toast.error("Please login!", {
+        icon: "👤",
+      });
+      return;
     }
     try {
       await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/like/toggle`, {
@@ -83,6 +86,7 @@ export default function Like({ id }: { id: string }) {
         className={`${isLiked ? "text-red-500" : "text-white"}`}
         size={15}
       />
+      <Toaster position="bottom-center" />
       <p className="text-white">{likes}</p>
     </div>
   );
