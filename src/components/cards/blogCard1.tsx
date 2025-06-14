@@ -40,7 +40,7 @@ export default function BlogCard1({ blog }: { blog: BlogType }) {
         <div className="mt-6 w-full flex justify-between items-center">
           <span className="flex gap-2">
             <Like id={blog._id} />
-            <Share />
+            <Share blogid={blog._id} title={blog.title} />
           </span>
           <Link href={`/blog/read/${blog._id}`} >
             <button className="border px-6 py-2 rounded-lg cursor-pointer">Read More</button>
